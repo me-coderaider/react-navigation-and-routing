@@ -3,9 +3,7 @@ function App() {
     return (
         <div>
             <div>
-                <Button primary secondary>
-                    Click Here!
-                </Button>
+                <Button primary>Click Here!</Button>
             </div>
             <div>
                 <Button>Buy Now!</Button>
