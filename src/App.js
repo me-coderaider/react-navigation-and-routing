@@ -8,7 +8,12 @@ function App() {
     return (
         <div>
             <div>
-                <Button secondary rounded onClick={handleClick}>
+                <Button
+                    secondary
+                    rounded
+                    className="mb-5"
+                    onClick={handleClick}
+                >
                     <GoBellFill />
                     Click Here!
                 </Button>
