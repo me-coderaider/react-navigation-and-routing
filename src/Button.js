@@ -11,7 +11,7 @@ function Button({
     danger,
     outline,
     rounded,
-    onClick,
+    ...rest
 }) {
     const classes = twMerge(
         classnames("flex items-center px-3 py-1.5 border", {
@@ -30,8 +30,9 @@ function Button({
         })
     );
 
+    // {...rest} here means take all the properties inside 'rest' and assign as props to the button
     return (
-        <button className={classes} onClick={onClick}>
+        <button {...rest} className={classes}>
             {children}
         </button>
     );
