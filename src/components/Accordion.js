@@ -7,6 +7,7 @@ function Accordion({ items }) {
     // variation 2::
     const handleClick = (nextIndex) => {
         // FUNCTIONAL VERSION OF STATE UPDATE
+        // NOTE -- it is guaranteed that 'currentExpandedIndex' will have the most up to date 'expandedIndex' value
         setExpandedIndex((currentExpandedIndex) => {
             if (currentExpandedIndex === nextIndex) {
                 return -1;
