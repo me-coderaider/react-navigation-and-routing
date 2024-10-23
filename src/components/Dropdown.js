@@ -11,8 +11,20 @@ function Dropdown({ options }) {
         // setIsOpen(!isOpen);
     };
 
+    const handleOptionClick = (option) => {
+        // Do 2 things
+        // 1. Close Dropdown
+        setIsOpen(false);
+        // 2. What option did the user clicked on?
+        console.log(option);
+    };
+
     const renderedOptions = options.map((option) => {
-        return <div key={option.value}>{option.label}</div>;
+        return (
+            <div onClick={() => handleOptionClick(option)} key={option.value}>
+                {option.label}
+            </div>
+        );
     });
 
     return (
