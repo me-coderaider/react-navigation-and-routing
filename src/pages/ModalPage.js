@@ -11,6 +11,7 @@ function ModalPage() {
     };
 
     return (
+        // <div className="relative"> it won't break the MODAL now!!
         <div>
             <Button onClick={handleClick} primary>
                 Open Modal
