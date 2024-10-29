@@ -24,9 +24,21 @@ function TablePage() {
         },
     ];
 
+    const config = [
+        {
+            label: "Fruits",
+        },
+        {
+            label: "Color",
+        },
+        {
+            label: "Score",
+        },
+    ];
+
     return (
         <div>
-            <Table data={data} />
+            <Table data={data} config={config} />
         </div>
     );
 }
