@@ -5,6 +5,8 @@ import Panel from "../components/Panel";
 
 const INCREMENT_COUNT = "increment";
 const SET_VALUE_TO_ADD = "change_value_to_add";
+const DECREMENT_COUNT = "decrement";
+const ADD_VALUE_TO_COUNT = "add_value_to_count";
 
 const reducer = (state, action) => {
     // return {
@@ -40,8 +42,20 @@ const reducer = (state, action) => {
                 ...state,
                 valueToAdd: action.payload,
             };
+        case DECREMENT_COUNT:
+            return {
+                ...state,
+                count: state.count - 1,
+            };
+        case ADD_VALUE_TO_COUNT:
+            return {
+                ...state,
+                count: state.count + state.valueToAdd,
+                valueToAdd: 0,
+            };
         default:
-            throw new Error("Unexpected action type: " + action.type);
+            return state;
+        // OR throw new Error("Unexpected action type: " + action.type);
     }
 };
 
@@ -52,7 +66,7 @@ function CounterPage({ initialCount }) {
     // const [count, setCount] = useState(initialCount);
     // const [valueToAdd, setValueToAdd] = useState(0);
 
-    const [state, dispatcher] = useReducer(reducer, {
+    const [state, dispatch] = useReducer(reducer, {
         count: initialCount,
         valueToAdd: 0,
     });
@@ -60,13 +74,16 @@ function CounterPage({ initialCount }) {
         // setCount(count + 1);
         // dispatcher();
         // dispatching an 'action' oject-using dispatcher()
-        dispatcher({
+        dispatch({
             type: INCREMENT_COUNT,
         });
     };
 
     const decrement = () => {
         // setCount(count - 1);
+        dispatch({
+            type: DECREMENT_COUNT,
+        });
     };
 
     const handleChange = (event) => {
@@ -75,7 +92,7 @@ function CounterPage({ initialCount }) {
 
         // setValueToAdd(value);
         // dispatching an 'action' oject-using dispatcher()
-        dispatcher({
+        dispatch({
             type: SET_VALUE_TO_ADD,
             payload: value,
         });
@@ -86,6 +103,10 @@ function CounterPage({ initialCount }) {
 
         // setCount(count + valueToAdd);
         // setValueToAdd(0);
+
+        dispatch({
+            type: ADD_VALUE_TO_COUNT,
+        });
     };
 
     return (
