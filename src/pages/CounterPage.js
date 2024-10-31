@@ -3,6 +3,9 @@ import Button from "../components/Button";
 import Panel from "../components/Panel";
 // import useCounter from "../hooks/use-counter";
 
+const INCREMENT_COUNT = "increment";
+const SET_VALUE_TO_ADD = "change_value_to_add";
+
 const reducer = (state, action) => {
     // return {
     //     ...state,
@@ -10,18 +13,35 @@ const reducer = (state, action) => {
     // };
 
     // handling STATES with 'action' object received from 'dispatcher'
-    if (action.type === "increment") {
+    /*
+    if (action.type === INCREMENT_COUNT) {
         return {
             ...state,
             count: state.count + 1,
         };
     }
 
-    if (action.type === "change-value-to-add") {
+    if (action.type === SET_VALUE_TO_ADD) {
         return {
             ...state,
             valueToAdd: action.payload,
         };
+    } */
+
+    // USING a SWITCH statement instead of 'if' statements
+    switch (action.type) {
+        case INCREMENT_COUNT:
+            return {
+                ...state,
+                count: state.count + 1,
+            };
+        case SET_VALUE_TO_ADD:
+            return {
+                ...state,
+                valueToAdd: action.payload,
+            };
+        default:
+            throw new Error("Unexpected action type: " + action.type);
     }
 };
 
@@ -41,7 +61,7 @@ function CounterPage({ initialCount }) {
         // dispatcher();
         // dispatching an 'action' oject-using dispatcher()
         dispatcher({
-            type: "increment",
+            type: INCREMENT_COUNT,
         });
     };
 
@@ -56,7 +76,7 @@ function CounterPage({ initialCount }) {
         // setValueToAdd(value);
         // dispatching an 'action' oject-using dispatcher()
         dispatcher({
-            type: "change-value-to-add",
+            type: SET_VALUE_TO_ADD,
             payload: value,
         });
     };
